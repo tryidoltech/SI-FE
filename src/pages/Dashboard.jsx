@@ -112,7 +112,7 @@ const Dashboard = () => {
   return (
     <div className="dashboard-container">
       <div className="dashboard-heading">
-        <h3>Appointment Dashboard</h3>
+        <h3 className="ml-10 mt-10">Appointment Dashboard</h3>
       </div>
       <div className="dashboard-panel">
         {panelData.map((data) => (
@@ -144,7 +144,7 @@ const Dashboard = () => {
         {/* <CustomerSatisfaction data={satisfactionData} /> */}
       </div>
       {/* <div className="dashboard-chart-revenue-container">
-        {/* <RevenueChart /> 
+        {/* <RevenueChart />
       </div> */}
     </div>
   );

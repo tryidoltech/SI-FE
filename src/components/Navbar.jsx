@@ -11,6 +11,7 @@ const Navbar = () => {
       {/* <div className="hamburger-icon" onClick={toggleSidebar}>
         <FaBars />
       </div> */}
+      <div>logo</div>
       <div className="navbar-search-container">
         <FaSearch className="search-icon" />
         <input type="text" placeholder="Search" />
