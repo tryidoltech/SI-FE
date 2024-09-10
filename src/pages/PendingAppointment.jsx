@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useTable } from "react-table";
-import "../styles/PendingAppointment.css";
+// import "../styles/PendingAppointment.css";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import Loader from "../components/Loader";
@@ -208,8 +208,8 @@ const PendingAppointment = () => {
     setPage(0); // Reset page to 0 when changing count
   };
   return (
-    <div className="pending-appointments-container">
-      <div className="pending-appointments-header">
+    <div className="pending-appointments-container h-[130vh] w-[70vw] bg-white ">
+      <div className="pending-appointments-header ">
         <h2>Pending Appointments</h2>
         <NavLink to="/AppointmentForm" className="navlink">
           <button className="pending-add-appointment-btn">

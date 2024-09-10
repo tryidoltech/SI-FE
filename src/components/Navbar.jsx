@@ -4,6 +4,8 @@ import { FaSearch, FaBell, FaBars } from "react-icons/fa";
 import admin_logo from "../assets/admin_logo.png";
 import { IoIosArrowDropdown } from "react-icons/io";
 
+
+
 const Navbar = () => {
   return (
     <div className="navbar-container">
@@ -11,7 +13,7 @@ const Navbar = () => {
       {/* <div className="hamburger-icon" onClick={toggleSidebar}>
         <FaBars />
       </div> */}
-      <div>logo</div>
+      <div className=" text-3xl ml-10">logo</div>
       <div className="navbar-search-container">
         <FaSearch className="search-icon" />
         <input type="text" placeholder="Search" />

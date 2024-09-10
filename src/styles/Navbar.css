@@ -12,6 +12,7 @@
     left: 0px;
     /* z-index: 999; */
     position: fixed;
+    border-bottom: 1px solid rgb(233, 229, 229);
 }
 
 

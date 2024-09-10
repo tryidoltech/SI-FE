@@ -178,22 +178,19 @@ const ConfirmedAppointments = () => {
   return (
     <>
       <div className="confirm-appointments-header">
-        <h2>Confirmed Appointments</h2>
-        <button
-          className="confirm-appt-checkin-btn"
-          onClick={() => setShowModal(true)}
-        >
-          Check in
-        </button>
+
+
       </div>
       {error ? (
         <h1>{error}</h1>
       ) : (
-        <div className="confirm-appointments-container">
+        <div className="confirm-appointments-container bg-black ">
+           <h2 className="text-2xl py-3 font-semibold">Confirmed Appointments</h2>
           <table {...getTableProps()} className="confirm-appointments-table">
-            <thead>
+
+            <thead >
               {headerGroups.map((headerGroup) => (
-                <tr {...headerGroup.getHeaderGroupProps()}>
+                <tr  {...headerGroup.getHeaderGroupProps()}>
                   {headerGroup.headers.map((column) => (
                     <th {...column.getHeaderProps()}>
                       {column.render("Header")}

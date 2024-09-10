@@ -9,6 +9,12 @@
     flex-direction: column;
     overflow-y: auto;
     /* width: 100vw; */
+    background: #f5f6fa;
+    height: 100vh;
+    padding: 6% 21% 0%;
+    /* overflow: hidden; */
+    /* overflow-y: scroll; */
+    overflow-x: hidden;
 }
 
 .app-navbar {
@@ -101,5 +107,19 @@
     }
     50% {
         transform: scale(1.2, 1);
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        /* flex-grow: 2;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        width: 100vw; */
+        background: #f5f6fa;
+        /* height: 100vh; */
+        padding-left: 0vw;
+        padding-top: 0vh;
     }
 }

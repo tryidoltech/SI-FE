@@ -11,8 +11,19 @@ import {
   FaBars,
   FaAngleDown,
   FaAngleRight,
+  FaBoxOpen,
 } from "react-icons/fa";
+import {  } from "react-icons"
 import { NavLink, useLocation } from "react-router-dom";
+// import admin_logo from "../assets/admin_logo.png";
+import dashboard from "../assets/dashboard.png";
+import { BiHomeAlt2, BiUserCheck } from "react-icons/bi";
+import { CgCalendarDates, CgUserList } from "react-icons/cg";
+import { LiaUserCheckSolid, LiaUserClockSolid } from "react-icons/lia";
+import { TbTransactionRupee } from "react-icons/tb";
+import { PiHairDryer, PiUser, PiUsersThree } from "react-icons/pi";
+import { MdOutlineInventory } from "react-icons/md";
+
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -48,7 +59,8 @@ const Sidebar = () => {
               isActive ? "navlink active" : "navlink"
             }
           >
-            <MenuItem icon={<FaHome />} label="Dashboard" />
+            <MenuItem icon={<BiHomeAlt2></BiHomeAlt2>} label="Dashboard" />
+
           </NavLink>
 
           <NavLink
@@ -57,36 +69,37 @@ const Sidebar = () => {
               isActive ? "navlink active" : "navlink"
             }
           >
-            <MenuItem icon={<FaCalendar />} label="Calendar" />
+            <MenuItem icon={<CgCalendarDates></CgCalendarDates>} label="Calendar" />
           </NavLink>
 
           <NavLink
             to="/allappointments"
-            className={({ isActive }) =>
+            className={ ({ isActive }) =>
               isActive ? "navlink active" : "navlink"
             }
             onClick={() => setIsAppointmentsOpen(!isAppointmentsOpen)}
           >
-            <MenuItem
-              icon={<FaCalendar />}
+            <MenuItem className=""
+              icon={<CgUserList></CgUserList>}
               label={
-                <>
+                <div className="flex gap-24 items-center">
                    Appointments{" "}
                   {isAppointmentsOpen ? <FaAngleDown /> : <FaAngleRight />}
-                </>
+                </div>
+
               }
             />
           </NavLink>
 
           {isAppointmentsOpen && (
-            <>
+            <div className="bg-[hsl(0,0%,98%)] ">
               <NavLink
                 to="/pendingappointment"
                 className={({ isActive }) =>
                   isActive ? "navlink active" : "navlink"
                 }
               >
-                <MenuItem icon={<FaTags />} label="Pending Appointments" />
+                <MenuItem icon={<LiaUserClockSolid></LiaUserClockSolid>} label="Pending Appointments" />
               </NavLink>
               <NavLink
                 to="/ConfirmedAppointments"
@@ -94,7 +107,7 @@ const Sidebar = () => {
                   isActive ? "navlink active" : "navlink"
                 }
               >
-                <MenuItem icon={<FaCalendar />} label="Confirmed Appointments" />
+                <MenuItem icon={<LiaUserCheckSolid></LiaUserCheckSolid>} label="Confirmed Appointments" />
               </NavLink>
               <NavLink
                 to="/CheckInAppointments"
@@ -102,7 +115,7 @@ const Sidebar = () => {
                   isActive ? "navlink active" : "navlink"
                 }
               >
-                <MenuItem icon={<FaCheckSquare />} label="Checked-In Appointments" />
+                <MenuItem className="" icon={<BiUserCheck></BiUserCheck>} label="Checked-In Appointments" />
               </NavLink>
               <NavLink
                 to="/PaidAppointments"
@@ -110,19 +123,54 @@ const Sidebar = () => {
                   isActive ? "navlink active" : "navlink"
                 }
               >
-                <MenuItem icon={<FaPhone />} label="Paid Appointments" />
+                <MenuItem icon={<TbTransactionRupee></TbTransactionRupee>} label="Paid Appointments" />
               </NavLink>
               <NavLink
+                to="/Reschedule Appointment"
+                className={({ isActive }) =>
+                  isActive ? "navlink active" : "navlink"
+                }
+              >
+                <MenuItem icon={<TbTransactionRupee></TbTransactionRupee>} label="Reschedule Appointment" />
+              </NavLink>
+
+            </div>
+          )}
+           <NavLink
                 to="/clientinfo"
                 className={({ isActive }) =>
                   isActive ? "navlink active" : "navlink"
                 }
               >
-                <MenuItem icon={<FaCalendar />} label="Client Info" />
+                <MenuItem icon={<PiUsersThree></PiUsersThree>} label="Client Info" />
               </NavLink>
-            </>
-          )}
+              <NavLink
+                to="/service"
+                className={({ isActive }) =>
+                  isActive ? "navlink active" : "navlink"
+                }
+              >
+                <MenuItem icon={<PiHairDryer></PiHairDryer>} label="Services" />
+              </NavLink>
+              <NavLink
+                to="/Stock Management"
+                className={({ isActive }) =>
+                  isActive ? "navlink active" : "navlink"
+                }
+              >
+                <MenuItem icon={<FaBoxOpen></FaBoxOpen>} label="Stock Management" />
+              </NavLink>
+              <NavLink
+                to="/Inventory Log"
+                className={({ isActive }) =>
+                  isActive ? "navlink active" : "navlink"
+                }
+              >
+                <MenuItem icon={<MdOutlineInventory></MdOutlineInventory>} label="Inventory Log" />
+              </NavLink>
+
         </div>
+
         <div className="sidebar-menu-section">
           <MenuItem icon={<FaCog />} label="Settings" />
           <MenuItem icon={<FaSignOutAlt />} label="Logout" />
