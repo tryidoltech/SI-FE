@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
@@ -13,9 +13,7 @@ const StocksManagement = lazy(() => import("./pages/StocksManagement"));
 const SaloonCalender = lazy(() => import("./pages/SaloonCalender"));
 const Login = lazy(() => import("./pages/Login"));
 const SignUp = lazy(() => import("./pages/SignUp"));
-const ConfirmedAppointments = lazy(() =>
-  import("./pages/ConfirmedAppointments")
-);
+const ConfirmedAppointments = lazy(() => import("./pages/ConfirmedAppointments"));
 const CheckInAppointments = lazy(() => import("./pages/CheckInAppointments"));
 const PaidAppointments = lazy(() => import("./pages/PaidAppointments"));
 const AppointmentForm = lazy(() => import("./pages/AppointmentForm"));
@@ -33,141 +31,62 @@ const CustomerSideAppt = lazy(() => import("./pages/CustomerSideAppt"));
 const AdminServicesList = lazy(() => import("./pages/AdminServicesList"));
 
 function App() {
+  const isAuthenticated = false;
+  const location = useLocation();
+
+  const hideNavbarAndSidebar = location.pathname === "/login" || location.pathname === "/signup";
+
   return (
     <div className="App">
       <Routes>
+        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/dashboard" element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />} />
+      </Routes>
+
+      <Routes>
         <Route path="/Workerpage/*" element={<WorkerSidebar />} />
         <Route path="/Adminpage/*" element={<AdminSidebar />} />
-        {/* <Route path="/Customerpage/*" element={<AdminSidebar />} /> */}
-        <Route path="/*" element={<Sidebar />} />
+        <Route path="/Customerpage/*" element={<AdminSidebar />} />
       </Routes>
+
       <div className="main-content">
-        <div className="app-navbar">
-          <Navbar />
-        </div>
+        {!hideNavbarAndSidebar && (
+          <div className="app-navbar">
+            <Navbar />
+            <Sidebar />
+          </div>
+        )}
+
         <Suspense fallback={<Loader />}>
           <Routes>
-            <Route exact path="/" element={<Dashboard />}></Route>
-            <Route
-              exact
-              path="/pendingappointment"
-              element={<PendingAppointment />}
-            ></Route>
-            <Route
-              exact
-              path="/AdminPage/pendingappointment"
-              element={<PendingAppointment />}
-            ></Route>
-            <Route
-              exact
-              path="/AdminPage/stockmanagement"
-              element={<StocksManagement />}
-            ></Route>
-            <Route exact path="/calendar" element={<SaloonCalender />}></Route>
-            <Route
-              exact
-              path="/AdminPage/calendar"
-              element={<SaloonCalender />}
-            ></Route>
-            <Route exact path="/login" element={<Login />}></Route>
-            <Route exact path="/signup" element={<SignUp />}></Route>
-            <Route
-              exact
-              path="/ConfirmedAppointments"
-              element={<ConfirmedAppointments />}
-            ></Route>
-            <Route
-              exact
-              path="/AdminPage/ConfirmedAppointments"
-              element={<ConfirmedAppointments />}
-            ></Route>
-            <Route
-              exact
-              path="/CheckInAppointments"
-              element={<CheckInAppointments />}
-            ></Route>
-            <Route
-              exact
-              path="/AdminPage/CheckInAppointments"
-              element={<CheckInAppointments />}
-            ></Route>
-            <Route
-              exact
-              path="/PaidAppointments"
-              element={<PaidAppointments />}
-            ></Route>
-            <Route
-              exact
-              path="/AdminPage/PaidAppointments"
-              element={<PaidAppointments />}
-            ></Route>
-            <Route
-              exact
-              path="/AppointmentForm"
-              element={<AppointmentForm />}
-            ></Route>
-            <Route
-              exact
-              path="/WorkerAppointment"
-              element={<WorkerAppointment />}
-            ></Route>
-            <Route
-              exact
-              path="/Workerpage"
-              element={<WorkerSidePage />}
-            ></Route>
-            <Route
-              exact
-              path="/Workerpage/Workerstockpage"
-              element={<WorkerStockPage />}
-            ></Route>
-            <Route
-              exact
-              path="/AdminPage/AdminDashboard"
-              element={<AdminDashboard />}
-            ></Route>
-            <Route exact path="/invoice" element={<Invoice />}></Route>
-            <Route
-              exact
-              path="/allappointments"
-              element={<AllAppointments />}
-            ></Route>
-            <Route
-              exact
-              path="/AdminPage/allappointments"
-              element={<AllAppointments />}
-            ></Route>
-            <Route exact path="/clientinfo" element={<ClientInfo />}></Route>
-            <Route
-              exact
-              path="/AdminPage/clientinfo"
-              element={<ClientInfo />}
-            ></Route>
-            <Route
-              exact
-              path="/AdminPage/AdminInventoryLogs"
-              element={<AdminInventoryLogs />}
-            ></Route>
-            <Route
-              exact
-              path="/AdminPage/AdminSettings"
-              element={<AdminSettings />}
-            ></Route>
-            <Route
-              exact
-              path="/AdminPage/AdminEmployeesPage"
-              element={<AdminEmployeesPage />}
-            ></Route>
-            <Route
-              exact
-              path="/AdminPage/AdminServicesList"
-              element={<AdminServicesList />}
-            ></Route>
-            <Route
-              exact
-              path="/CustomerPage/CustomerBookingForm"
-              element={<CustomerSideAppt />}
-            ></Route>
+            <Route path="/pendingappointment" element={<PendingAppointment />} />
+            <Route path="/AdminPage/pendingappointment" element={<PendingAppointment />} />
+            <Route path="/AdminPage/stockmanagement" element={<StocksManagement />} />
+            <Route path="/calendar" element={<SaloonCalender />} />
+            <Route path="/AdminPage/calendar" element={<SaloonCalender />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/ConfirmedAppointments" element={<ConfirmedAppointments />} />
+            <Route path="/AdminPage/ConfirmedAppointments" element={<ConfirmedAppointments />} />
+            <Route path="/CheckInAppointments" element={<CheckInAppointments />} />
+            <Route path="/AdminPage/CheckInAppointments" element={<CheckInAppointments />} />
+            <Route path="/PaidAppointments" element={<PaidAppointments />} />
+            <Route path="/AdminPage/PaidAppointments" element={<PaidAppointments />} />
+            <Route path="/AppointmentForm" element={<AppointmentForm />} />
+            <Route path="/WorkerAppointment" element={<WorkerAppointment />} />
+            <Route path="/Workerpage" element={<WorkerSidePage />} />
+            <Route path="/Workerpage/Workerstockpage" element={<WorkerStockPage />} />
+            <Route path="/AdminPage/AdminDashboard" element={<AdminDashboard />} />
+            <Route path="/invoice" element={<Invoice />} />
+            <Route path="/allappointments" element={<AllAppointments />} />
+            <Route path="/AdminPage/allappointments" element={<AllAppointments />} />
+            <Route path="/clientinfo" element={<ClientInfo />} />
+            <Route path="/AdminPage/clientinfo" element={<ClientInfo />} />
+            <Route path="/AdminPage/AdminInventoryLogs" element={<AdminInventoryLogs />} />
+            <Route path="/AdminPage/AdminSettings" element={<AdminSettings />} />
+            <Route path="/AdminPage/AdminEmployeesPage" element={<AdminEmployeesPage />} />
+            <Route path="/AdminPage/AdminServicesList" element={<AdminServicesList />} />
+            <Route path="/CustomerPage/CustomerBookingForm" element={<CustomerSideAppt />} />
           </Routes>
         </Suspense>
       </div>

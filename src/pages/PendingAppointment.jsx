@@ -8,6 +8,7 @@ import { BASE_URL, APPOINTMENTS_URL } from "../redux/constants";
 
 const apiUrl = `${BASE_URL}${APPOINTMENTS_URL}getAllPendingAppointmentsByBranchId/66addb87384b0263493328dd`;
 
+
 const PendingAppointment = () => {
   const [appointments, setAppointments] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -16,13 +17,20 @@ const PendingAppointment = () => {
   const [count, setCount] = useState(10);
   const [totalPages, setTotalPages] = useState(0);
 
+  const token = localStorage.getItem("token"); // Retrieve the token
+
+
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
         setLoading(true);
         setError(null);
         const response = await axios.get(
-          `${apiUrl}?page=${page}&count=${count}`
+          `${apiUrl}?page=${page}&count=${count}`,{
+            headers: {
+              Authorization: `${token}`, // Set the Authorization header
+            },
+          }
         );
 
         const data = response.data.data; // Ensure correct data path

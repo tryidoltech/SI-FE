@@ -10,6 +10,8 @@ import { BASE_URL, APPOINTMENTS_URL } from "../redux/constants";
 import booking from "../assets/booking.png";
 import week_booking from "../assets/week_booking.png";
 import sales from "../assets/sales.png";
+import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
 
 const apiUrl = `${BASE_URL}${APPOINTMENTS_URL}getAllAppointmentByBranchId/66addb87384b0263493328dd`;
 
@@ -33,9 +35,16 @@ const AdminDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const token = localStorage.getItem("token"); // Retrieve the token
+
+
   const fetchDashboardData = useCallback(async () => {
     try {
-      const { data } = await axios.get(apiUrl);
+      const { data } = await axios.get(apiUrl,{
+        headers: {
+          Authorization: `${token}`, // Set the Authorization header
+        },
+      });
       const today = new Date();
       const todayString = today.toISOString().split("T")[0];
 
@@ -145,6 +154,8 @@ const AdminDashboard = () => {
 
   return (
     <div className="dashboard-container">
+      <Navbar></Navbar>
+      <Sidebar></Sidebar>
       <div className="dashboard-heading">
         {/* <h3>Dashboard</h3> */}
       </div>

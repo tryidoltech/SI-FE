@@ -2,11 +2,19 @@ import React, { useState } from "react";
 import "../styles/Login.css";
 import auth_img from "../assets/auth_img.png";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { BASE_URL, USERS_URL, BRANCHES_URL } from "../redux/constants";
+import { useAuth } from "../redux/auth";
+
+const userApiUrl = `${BASE_URL}${USERS_URL}`;
+const branchApiUrl = `${BASE_URL}${BRANCHES_URL}`;
 
 const Login = () => {
-  const data = { username: "", password: "" };
+  const data = { email: "", password: "" };
   const [inputData, setInputData] = useState(data);
+  const navigate = useNavigate();
 
+  const storeTokenInLS = useAuth();
   const dataHandle = (e) => {
     setInputData({ ...inputData, [e.target.name]: e.target.value });
   };
@@ -14,14 +22,17 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3000/api/users/login", inputData)
+      .post(`${branchApiUrl}loginBranch`, inputData)
       .then((response) => {
         console.log("Response", response);
+        storeTokenInLS(response.data.data.token);
+        navigate("/AdminPage/AdminDashboard");
       })
       .catch((err) => {
         console.log("Error", err);
       });
   };
+
   return (
     <div className="sign-in">
       <div className="sign-in-headings">
@@ -40,12 +51,12 @@ const Login = () => {
           <p>Sign In</p>
         </div>
         <form className="sign-in__form">
-          <label htmlFor="username">Username or email address</label>
+          <label htmlFor="email">Username or email address</label>
           <input
             type="text"
-            id="username"
-            name="username"
-            value={inputData.username}
+            id="email"
+            name="email"
+            value={inputData.email}
             onChange={dataHandle}
             placeholder="Username or email address"
           />

@@ -179,7 +179,7 @@ const ConfirmedAppointments = () => {
     <>
       <div className="confirm-appointments-header">
 
-
+    
       </div>
       {error ? (
         <h1>{error}</h1>

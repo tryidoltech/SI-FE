@@ -5,6 +5,8 @@ import "../styles/CheckInAppointments.css";
 import PaymentPopUp from "../components/PaymentPopUp";
 import Loader from "../components/Loader";
 import { BASE_URL, APPOINTMENTS_URL } from "../redux/constants";
+import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
 
 const apiUrl = `${BASE_URL}${APPOINTMENTS_URL}getAllCheckInAppointmentsByBranchId/66addb87384b0263493328dd`;
 
@@ -128,6 +130,8 @@ const CheckInAppointments = () => {
 
   return (
     <div className="checkin-appointments-container">
+      <Navbar></Navbar>
+      <Sidebar></Sidebar>
       {error ? (
         <h1>{error}</h1>
       ) : (
@@ -138,7 +142,7 @@ const CheckInAppointments = () => {
           <table {...getTableProps()} className="checkin-appointments-table">
             <thead>
               {headerGroups.map((headerGroup) => (
-                <tr {...headerGroup.getHeaderGroupProps()}>
+                <tr className="border-none" {...headerGroup.getHeaderGroupProps()}>
                   {headerGroup.headers.map((column) => (
                     <th {...column.getHeaderProps()}>
                       {column.render("Header")}
@@ -151,7 +155,7 @@ const CheckInAppointments = () => {
               {rows.map((row) => {
                 prepareRow(row);
                 return (
-                  <tr {...row.getRowProps()}>
+                  <tr  {...row.getRowProps()}>
                     {row.cells.map((cell) => (
                       <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
                     ))}

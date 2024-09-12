@@ -13,6 +13,11 @@ import booking from "../assets/booking.png";
 import week_booking from "../assets/week_booking.png";
 import tot_cust from "../assets/tot_cust.png";
 import new_cust from "../assets/new_cust.png";
+import { BASE_URL, USERS_URL, BRANCHES_URL , APPOINTMENTS_URL} from "../redux/constants";
+import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
+
+const apiUrl = `${BASE_URL}${APPOINTMENTS_URL}`
 
 const Dashboard = () => {
   const [loading, setLoading] = useState(true);
@@ -40,7 +45,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       const apiUrl =
-        "http://localhost:3000/api/appointments/getAllAppointmentByBranchId/66addb87384b0263493328dd";
+        `${apiUrl}getAllAppointmentByBranchId/66addb87384b0263493328dd`;
 
       try {
         const response = await axios.get(apiUrl);
@@ -111,7 +116,10 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
+<Navbar></Navbar>
+<Sidebar></Sidebar>
       <div className="dashboard-heading">
+
         <h3 className="ml-10 mt-10">Appointment Dashboard</h3>
       </div>
       <div className="dashboard-panel">

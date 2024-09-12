@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { useTable } from "react-table";
 import axios from "axios";
 import "../styles/AllAppointment.css";
@@ -22,11 +22,19 @@ const AllAppointments = () => {
   const [count, setCount] = useState(10); // Default count set to 10
   const [totalPages, setTotalPages] = useState(0);
 
+  const token = localStorage.getItem("token"); // Retrieve the token
+
   const fetchAppointments = useCallback(async () => {
     try {
-      const { data } = await axios.get(`${apiUrl}?page=${page}&count=${count}`);
+      const { data } = await axios.get(
+        `${apiUrl}?page=${page}&count=${count}`,
+        {
+          headers: {
+            Authorization: `${token}`, // Set the Authorization header
+          },
+        }
+      );
 
-      console.log("knjhfgdsjhkj",data)
       setTotalPages(data.totalPages);
       return data.data.map(
         ({

@@ -1,9 +1,10 @@
 .paid-appointments-container {
     padding: 20px;
-    /* background-color: #fff; */
-    border-radius: 8px;
-    max-width: 900px;
+    background-color: #fff;
+    border-radius: 10px;
+    /* max-width: 1300px; */
     margin: 0 auto;
+    width: 77vw;
 }
 
 .paid-appointments-header {
@@ -29,8 +30,10 @@
 
 .paid-appointments-table th,
 .paid-appointments-table td {
-    padding: 10px;
+    padding: 16px;
     text-align: center;
+    border-bottom: 1px solid #dee2e6;
+    border: none;
     border-bottom: 1px solid #dee2e6;
 }
 
@@ -59,6 +62,10 @@
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
 }
 
 .paid-appt-payment-btn:hover {
@@ -71,12 +78,14 @@
 .pagination {
     margin-top: 20px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     /* Center the pagination controls */
     align-items: center;
     /* Vertically align items */
     gap: 20px;
     /* Space between the left and right sections */
+    width: 74.5vw;
+    padding-bottom: 30px;
 }
 
 .pagination .left,
@@ -89,8 +98,8 @@
 }
 
 .pagination button {
-    background-color: #2451ef;
-    color: white;
+    background-color: #efecec;
+    color: rgb(31, 29, 29);
     border: none;
     padding: 8px 12px;
     cursor: pointer;
@@ -103,7 +112,7 @@
 }
 
 .pagination button.active-page {
-    background-color: #ff5722;
+    background-color: #0056b3;
     color: white;
 }
 

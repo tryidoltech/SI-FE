@@ -148,26 +148,27 @@ const SaloonCalender = () => {
   const mergedAppointments = getMergedAppointments();
 
   return (
-    <div className="employee-calendar">
-      <div className="calendar-controls">
+
+    <div>
+      <div className="calendar-controls w-full">
         <button onClick={handlePrevDay} className="nav-button">
           &lt;
         </button>
-        <button onClick={handleToday} className="nav-button">
-          Today
-        </button>
-        <button onClick={handleNextDay} className="nav-button">
-          &gt;
-        </button>
-        <div className="date-display">
+        <div className="date-display ">
           <DatePicker
             selected={currentDate}
             onChange={handleDateChange}
             dateFormat="MMMM d, yyyy"
-            className="styled-date-picker"
+            className="styled-date-picker bg-transparent"
           />
         </div>
+
+        <button onClick={handleNextDay} className="nav-button">
+          &gt;
+        </button>
+
       </div>
+      <div className="employee-calendar">
       <div className="employee-list">
         {employees.map((employee) => (
           <div key={employee.id} className="employee-item">
@@ -223,6 +224,7 @@ const SaloonCalender = () => {
           ))}
         </div>
       </div>
+    </div>
     </div>
   );
 };
